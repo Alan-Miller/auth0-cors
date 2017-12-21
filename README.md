@@ -1,4 +1,6 @@
 ## Troubleshooting
+
+### Auth0Strategy setup
 ```sh
 /Users/Home/dev/auth0-cors/node_modules/passport-auth0/lib/index.js:35
     if(!options[k]){
@@ -18,3 +20,16 @@ TypeError: Cannot read property 'domain' of undefined
 [nodemon] app crashed - waiting for file changes before starting...
 ```
 Invoked new Auth0Strategy incorrectly (added comma after Auth0Strategy).
+
+
+### Order of middleware
+req.user is undefined and this appears in browser console:
+```sh
+GET http://localhost:3000/auth/me 404 (Not Found)
+dispatchXhrRequest @ xhr.js:178
+
+Uncaught (in promise) Error: Request failed with status code 404
+    at createError (createError.js:16)
+    at settle (settle.js:18)
+    at XMLHttpRequest.handleLoad (xhr.js:77)
+```
